@@ -1,0 +1,33 @@
+LogisticRegression :
+Mean cross-validation score: 0.5302141235060973
+Confusion matrix:
+[[ 63114 100902]
+ [ 52655 111831]]
+True positive: 111831
+True negative: 63114
+False positive: 100902
+False negative: 52655
+Precision: 0.5256871289362722
+Recall: 0.6798815704680033
+Error rate: 0.46744616471132594
+F1 score: 0.592923474162224
+Accuracy: 0.5325538352886741
+Balanced accuracy: 0.5323427460183154
+ROC AUC: 0.5325538352886741
+
+RandomForestClassifier :
+Mean cross-validation score: 0.9923014167341447
+Confusion matrix:
+[[161831   2185]
+ [   418 164068]]
+True positive: 164068
+True negative: 161831
+False positive: 2185
+False negative: 418
+Precision: 0.9868573800172027
+Recall: 0.9974587502887784
+Error rate: 0.00792384825663162
+F1 score: 0.9921297458116521
+Accuracy: 0.9920761517433684
+Balanced accuracy: 0.9920684396259032
+ROC AUC: 0.9920761517433684
