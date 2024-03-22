@@ -7,6 +7,7 @@ from imblearn.over_sampling import RandomOverSampler
 
 
 PATH_TO_DATA = '../data/Comments.csv'
+PATH_TO_NEW_DATA = '../data/Test.csv'
 
 
 def main():
@@ -45,18 +46,41 @@ def main():
     disp = ConfusionMatrixDisplay(confusion)
     disp.plot()
     plt.show()
-    print(f"Confusion matrix: {confusion}")
-    print(f"True positive: {confusion[1, 1]}")
-    print(f"True negative: {confusion[0, 0]}")
-    print(f"False positive: {confusion[0, 1]}")
-    print(f"False negative: {confusion[1, 0]}")
-    print(f"Precision: {confusion[1, 1] / (confusion[1, 1] + confusion[0, 1])}")
-    print(f"Recall: {confusion[1, 1] / (confusion[1, 1] + confusion[1, 0])}")
-    print(f"Error rate: {(confusion[1, 0] + confusion[0, 1]) / confusion.sum()}")
-    print(f"F1 score: {2 * confusion[1, 1] / (2 * confusion[1, 1] + confusion[1, 0] + confusion[0, 1])}")
-    print(f"Accuracy: {(confusion[1, 1] + confusion[0, 0]) / confusion.sum()}")
-    print(f"Balanced accuracy: {(confusion[1, 1] / (confusion[1, 1] + confusion[1, 0]) + confusion[0, 0] / (confusion[0, 0] + confusion[0, 1])) / 2}")
-    print(f"ROC AUC: {model.score(X_test, y_test)}")
+
+    # Calculate metrics
+    true_positive = confusion[1, 1]
+    true_negative = confusion[0, 0]
+    false_positive = confusion[0, 1]
+    false_negative = confusion[1, 0]
+    precision = true_positive / (true_positive + false_positive)
+    recall = true_positive / (true_positive + false_negative)
+    error_rate = (false_negative + false_positive) / confusion.sum()
+    f1_score = 2 * true_positive / (2 * true_positive + false_negative + false_positive)
+    accuracy = (true_positive + true_negative) / confusion.sum()
+    balanced_accuracy = (recall + true_negative / (confusion[0, 0] + confusion[0, 1])) / 2
+    evaluation = true_positive / (true_positive + false_positive + false_negative)
+    print(f"True positive: {true_positive}")
+    print(f"True negative: {true_negative}")
+    print(f"False positive: {false_positive}")
+    print(f"False negative: {false_negative}")
+    print(f"Precision: {precision}")
+    print(f"Recall: {recall}")
+    print(f"Error rate: {error_rate}")
+    print(f"F1 score: {f1_score}")
+    print(f"Accuracy: {accuracy}")
+    print(f"Balanced accuracy: {balanced_accuracy}")
+    print(f"Evaluation: {evaluation}")
+
+    if evaluation > 0.93:
+        # Classify new data
+        new_data = pd.read_csv(PATH_TO_NEW_DATA)
+        new_data['created_time'] = pd.to_datetime(new_data['created_time']).dt.hour
+        test_pred = model.predict(new_data[['IDENTITY_ATTACK', 'INSULT', 'PROFANITY', 'SEVERE_TOXICITY', 'THREAT',
+                                            'TOXICITY', 'created_time']])
+        with open('../data/predictions.txt', 'w') as f:
+            for idx, pred in enumerate(test_pred):
+                if pred == 1:
+                    f.write(f"{new_data.iloc[idx]['id']}\n")
 
 
 if __name__ == '__main__':

@@ -1,33 +1,27 @@
 LogisticRegression :
-Mean cross-validation score: 0.5302141235060973
-Confusion matrix:
-[[ 63114 100902]
- [ 52655 111831]]
-True positive: 111831
-True negative: 63114
-False positive: 100902
-False negative: 52655
-Precision: 0.5256871289362722
-Recall: 0.6798815704680033
-Error rate: 0.46744616471132594
-F1 score: 0.592923474162224
-Accuracy: 0.5325538352886741
-Balanced accuracy: 0.5323427460183154
-ROC AUC: 0.5325538352886741
+Mean cross-validation score: 0.5299316290311779
+True positive: 112295
+True negative: 62927
+False positive: 101089
+False negative: 52191
+Precision: 0.5262578262662617
+Recall: 0.6827024792383546
+Error rate: 0.4666029430566633
+F1 score: 0.5943578479371212
+Accuracy: 0.5333970569433367
+Balanced accuracy: 0.5331831340684994
+Evaluation: 0.4228372399510496
 
 RandomForestClassifier :
-Mean cross-validation score: 0.9923014167341447
-Confusion matrix:
-[[161831   2185]
- [   418 164068]]
-True positive: 164068
-True negative: 161831
-False positive: 2185
-False negative: 418
-Precision: 0.9868573800172027
-Recall: 0.9974587502887784
-Error rate: 0.00792384825663162
-F1 score: 0.9921297458116521
-Accuracy: 0.9920761517433684
-Balanced accuracy: 0.9920684396259032
-ROC AUC: 0.9920761517433684
+Mean cross-validation score: 0.9922113107378342
+True positive: 164039
+True negative: 161817
+False positive: 2199
+False negative: 447
+Precision: 0.9867719775261974
+Recall: 0.9972824434906314
+Error rate: 0.008054745481001638
+F1 score: 0.9919993710767891
+Accuracy: 0.9919452545189984
+Balanced accuracy: 0.9919376074637822
+Evaluation: 0.9841257461679215
